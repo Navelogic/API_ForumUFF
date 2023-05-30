@@ -1,15 +1,10 @@
 package br.com.apiuff.entities;
 
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "tb_responses")
 public class Response {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String message;
     private TopicUFF topic;

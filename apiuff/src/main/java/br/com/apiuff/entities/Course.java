@@ -1,13 +1,8 @@
 package br.com.apiuff.entities;
 
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "tb_courses")
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
