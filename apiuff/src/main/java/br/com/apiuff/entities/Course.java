@@ -41,8 +41,4 @@ public class Course {
         this.name = name;
         this.category = category;
     }
-    public Course(String name, String category) {
-        this.name = name;
-        this.category = category;
-    }
 }
