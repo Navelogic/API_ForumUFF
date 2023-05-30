@@ -17,7 +17,7 @@ public class TopicUFF {
     // Strings
     private String title;
     private String message;
-
+    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
     @Enumerated(EnumType.STRING)
     private StatusTopicUFF status = StatusTopicUFF.NOT_ANSWERED;
