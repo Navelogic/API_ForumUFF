@@ -4,18 +4,19 @@ import br.com.apiuff.controller.dto.TopicUFFDTO;
 import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.repository.TopicUFFRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
+@RequestMapping("/apiuff/topics")
 public class TopicUFFController {
+
     @Autowired
     private TopicUFFRepository topicUFFRepository;
 
-    @RequestMapping("/topics")
+    @GetMapping
     public List<TopicUFFDTO> listTopics(String couseName){
         if(couseName == null){
             List<TopicUFF> topics = topicUFFRepository.findAll();
@@ -24,6 +25,11 @@ public class TopicUFFController {
             List<TopicUFF> topics = topicUFFRepository.findByCourseName(couseName);
             return TopicUFFDTO.convert(topics);
         }
+    }
+
+    @PostMapping
+    public void newTopic(){
+
     }
 
 }
