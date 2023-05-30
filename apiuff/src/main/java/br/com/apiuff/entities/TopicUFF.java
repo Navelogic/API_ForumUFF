@@ -14,21 +14,26 @@ public class TopicUFF {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Strings
     private String title;
     private String message;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
     @Enumerated(EnumType.STRING)
     private StatusTopicUFF status = StatusTopicUFF.NOT_ANSWERED;
+
     @ManyToOne
     private User author;
+
     @ManyToOne
     private Course course;
+
     @OneToMany(mappedBy = "topic")
     private List<Response> responses = new ArrayList<>();
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -94,8 +99,10 @@ public class TopicUFF {
     }
 
     // Constructors
+
     public TopicUFF() {
     }
+
     public TopicUFF(Long id, String title, String message, LocalDateTime createdAt, StatusTopicUFF status, User author, Course course, List<Response> responses) {
         this.id = id;
         this.title = title;
