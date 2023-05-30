@@ -20,6 +20,9 @@ public class TopicUFF {
     private Course course;
     private List<Response> responses = new ArrayList<>();
 
+    public TopicUFF(String dúvida, String dúvidaComSpring, Course course) {
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;
