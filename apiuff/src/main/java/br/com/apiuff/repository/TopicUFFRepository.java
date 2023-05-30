@@ -9,4 +9,5 @@ import java.util.List;
 
 @Repository
 public interface TopicUFFRepository extends JpaRepository<TopicUFF, Long> {
+    List<TopicUFF> findByCourseName(String couseName);
 }
