@@ -1,14 +1,19 @@
 package br.com.apiuff.entities;
 
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+@Entity
 public class Response {
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
+    @ManyToOne
     private TopicUFF topic;
     private LocalDateTime createdAt = LocalDateTime.now();
+    @ManyToOne
     private User author;
     private Boolean solution = false;
 

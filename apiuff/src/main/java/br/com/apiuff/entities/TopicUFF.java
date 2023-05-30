@@ -7,7 +7,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class TopicUFF {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // Strings
@@ -15,9 +19,13 @@ public class TopicUFF {
     private String message;
 
     private LocalDateTime createdAt = LocalDateTime.now();
+    @Enumerated(EnumType.STRING)
     private StatusTopicUFF status = StatusTopicUFF.NOT_ANSWERED;
+    @ManyToOne
     private User author;
+    @ManyToOne
     private Course course;
+    @OneToMany(mappedBy = "topic")
     private List<Response> responses = new ArrayList<>();
 
     // Getters and Setters
