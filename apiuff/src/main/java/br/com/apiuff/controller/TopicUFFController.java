@@ -44,8 +44,7 @@ public class TopicUFFController {
     }
 
     @GetMapping("/{id}")
-    public TopicUFFDTO getTopicById(@PathVariable Long id) {
-    	TopicUFF topic = topicUFFRepository.findById(id).get();
-    	return new TopicUFFDTO(topic);
+    public TopicUFF getTopicById(@PathVariable Long id){
+        return topicUFFRepository.findById(id);
     }
 }
