@@ -16,10 +16,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/apiuff/topics")
+@RequestMapping("/topics")
 public class TopicUFFController {
 
     @Autowired
@@ -38,32 +39,42 @@ public class TopicUFFController {
             return TopicUFFDTO.convert(topics);
         }
     }
+
     @PostMapping
     @Transactional
-    public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) throws java.net.URISyntaxException {
+    public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder){
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
-        URI uri = new URI("/apiuff/topics/" + topic.getId());
+
+        URI uri = uriBuilder.path("/apiuff/topics/{id}").buildAndExpand(topic.getId()).toUri();
         return ResponseEntity.created(uri).body(new TopicUFFDTO(topic));
     }
 
     @GetMapping("/{id}")
-    public TopicDetailDTO getTopicById(@PathVariable Long id){
-        TopicUFF topic = topicUFFRepository.getReferenceById(id);
-        return new TopicDetailDTO(topic);
+    public ResponseEntity<TopicDetailDTO> getTopicById(@PathVariable Long id){
+        Optional<TopicUFF> topic = topicUFFRepository.findById(id);
+        return topic.map(topicUFF -> ResponseEntity.ok(new TopicDetailDTO(topicUFF))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<TopicUFFDTO> updateTopic(@PathVariable Long id, @RequestBody @Valid UpdateTopicUFFForm form){
-        TopicUFF topic = form.updade(id, topicUFFRepository);
-        return ResponseEntity.ok(new TopicUFFDTO(topic));
-
+        Optional<TopicUFF> optional = topicUFFRepository.findById(id);
+        if(optional.isPresent()){
+            TopicUFF topic = form.update(id, topicUFFRepository);
+            return ResponseEntity.ok(new TopicUFFDTO(topic));
+        }
+        return ResponseEntity.notFound().build();
     }
+
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> deleteTopic(@PathVariable Long id){
-        topicUFFRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        Optional<TopicUFF> optional = topicUFFRepository.findById(id);
+        if(optional.isPresent()){
+            topicUFFRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -15,9 +15,6 @@ public class TopicUFFDTO {
     private String title;
     private String message;
     private LocalDateTime createdAt;
-    private StatusTopicUFF status;
-    private User author;
-    private Course course;
 
     // Constructors
     public TopicUFFDTO(TopicUFF topic) {
@@ -25,29 +22,9 @@ public class TopicUFFDTO {
         this.title = topic.getTitle();
         this.message = topic.getMessage();
         this.createdAt = topic.getCreatedAt();
-        this.status = topic.getStatus();
-        this.author = topic.getAuthor();
-    }
-
-    public static List<TopicUFFDTO> convert(List<TopicUFF> topic) {
-        return topic.stream()
-                .map(TopicUFFDTO::new)
-                .collect(Collectors.toList());
     }
 
     // Getters
-    public StatusTopicUFF getStatus() {
-        return status;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
     public Long getId() {
         return id;
     }
@@ -62,5 +39,12 @@ public class TopicUFFDTO {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    // Methods
+    public static List<TopicUFFDTO> convert(List<TopicUFF> topic) {
+        return topic.stream()
+                .map(TopicUFFDTO::new)
+                .collect(Collectors.toList());
     }
 }

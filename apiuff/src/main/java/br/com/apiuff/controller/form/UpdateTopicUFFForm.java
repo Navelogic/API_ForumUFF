@@ -2,12 +2,12 @@ package br.com.apiuff.controller.form;
 
 import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.repository.TopicUFFRepository;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 public class UpdateTopicUFFForm {
-    @NotNull(message = "Title cannot be null")
+    @NotEmpty(message = "Title cannot be empty")
     private String title;
-    @NotNull(message = "Message cannot be null")
+    @NotEmpty(message = "Message cannot be empty")
     private String message;
 
     // Getters and Setters
@@ -27,7 +27,7 @@ public class UpdateTopicUFFForm {
         this.message = message;
     }
 
-    public TopicUFF updade(Long id, TopicUFFRepository topicUFFRepository) {
+    public TopicUFF update(Long id, TopicUFFRepository topicUFFRepository) {
         TopicUFF topic = topicUFFRepository.getReferenceById(id);
         topic.setTitle(this.title);
         topic.setMessage(this.message);

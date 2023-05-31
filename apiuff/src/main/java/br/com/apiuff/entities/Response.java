@@ -6,13 +6,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 public class Response {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
+
     @ManyToOne
     private TopicUFF topic;
+
     private LocalDateTime createdAt = LocalDateTime.now();
+
     @ManyToOne
     private User author;
     private Boolean solution = false;
@@ -68,13 +71,5 @@ public class Response {
 
     // Constructors
     public Response() {
-    }
-    public Response(Long id, String message, TopicUFF topic, LocalDateTime createdAt, User author, Boolean solution) {
-        this.id = id;
-        this.message = message;
-        this.topic = topic;
-        this.createdAt = createdAt;
-        this.author = author;
-        this.solution = solution;
     }
 }

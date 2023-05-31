@@ -16,6 +16,18 @@ public class TopicDetailDTO {
     private StatusTopicUFF status;
     private List<ResponseDTO> responses;
 
+    // Constructors
+    public TopicDetailDTO(TopicUFF topic) {
+        this.id = topic.getId();
+        this.title = topic.getTitle();
+        this.message = topic.getMessage();
+        this.createdAt = topic.getCreatedAt();
+        this.authorName = topic.getAuthor().getName();
+        this.status = topic.getStatus();
+        this.responses = new ArrayList<>();
+        this.responses.addAll(topic.getResponses().stream().map(ResponseDTO::new).toList());
+    }
+
     //Getters
     public Long getId() {
         return id;
@@ -45,15 +57,4 @@ public class TopicDetailDTO {
         return responses;
     }
 
-    // Constructors
-    public TopicDetailDTO(TopicUFF topic) {
-        this.id = topic.getId();
-        this.title = topic.getTitle();
-        this.message = topic.getMessage();
-        this.createdAt = topic.getCreatedAt();
-        this.authorName = topic.getAuthor().getName();
-        this.status = topic.getStatus();
-        this.responses = new ArrayList<>();
-        this.responses.addAll(topic.getResponses().stream().map(ResponseDTO::new).toList());
-    }
 }

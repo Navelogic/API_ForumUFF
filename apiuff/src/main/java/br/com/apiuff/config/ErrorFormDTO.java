@@ -8,6 +8,12 @@ public class ErrorFormDTO {
     private String field;
     private String error;
 
+    // Constructor
+    public ErrorFormDTO(String field, String error) {
+        this.field = field;
+        this.error = error;
+    }
+
     // Getters
     public String getField() {
         return field;
@@ -17,9 +23,4 @@ public class ErrorFormDTO {
         return error;
     }
 
-    // Constructor
-    public ErrorFormDTO(String field, String error) {
-        this.field = field;
-        this.error = error;
-    }
 }

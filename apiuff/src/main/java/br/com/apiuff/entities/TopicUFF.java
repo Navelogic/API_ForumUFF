@@ -10,13 +10,10 @@ import java.util.List;
 @Entity
 public class TopicUFF {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String message;
-
-    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
@@ -31,8 +28,16 @@ public class TopicUFF {
     @OneToMany(mappedBy = "topic")
     private List<Response> responses = new ArrayList<>();
 
-    // Getters and Setters
+    // Constructors
+    public TopicUFF() {
+    }
+    public TopicUFF(String title, String message, Course course) {
+        this.title = title;
+        this.message = message;
+        this.course = course;
+    }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -97,23 +102,4 @@ public class TopicUFF {
         this.responses = responses;
     }
 
-    // Constructors
-    public TopicUFF() {
-    }
-    public TopicUFF(String title, String message, Course course) {
-        this.title = title;
-        this.message = message;
-        this.course = course;
-    }
-
-    public TopicUFF(Long id, String title, String message, LocalDateTime createdAt, StatusTopicUFF status, User author, Course course, List<Response> responses) {
-        this.id = id;
-        this.title = title;
-        this.message = message;
-        this.createdAt = createdAt;
-        this.status = status;
-        this.author = author;
-        this.course = course;
-        this.responses = responses;
-    }
 }
