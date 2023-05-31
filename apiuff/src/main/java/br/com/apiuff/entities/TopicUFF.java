@@ -13,7 +13,6 @@ public class TopicUFF {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
     private String message;
 
@@ -99,8 +98,12 @@ public class TopicUFF {
     }
 
     // Constructors
-
     public TopicUFF() {
+    }
+    public TopicUFF(String title, String message, Course course) {
+        this.title = title;
+        this.message = message;
+        this.course = course;
     }
 
     public TopicUFF(Long id, String title, String message, LocalDateTime createdAt, StatusTopicUFF status, User author, Course course, List<Response> responses) {
