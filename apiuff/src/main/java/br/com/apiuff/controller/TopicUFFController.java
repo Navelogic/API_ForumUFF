@@ -76,24 +76,19 @@ public class TopicUFFController {
         return TopicUFFDTO.convert(topics);
     }
 
-
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<TopicDetailDTO> getTopicById(@PathVariable Long id){
+        Optional<TopicUFF> topic = topicUFFRepository.findById(id);
+        return topic.map(topicUFF -> ResponseEntity.ok(new TopicDetailDTO(topicUFF))).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     @PostMapping
     @Transactional
     public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder){
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
-
-        URI uri = uriBuilder.path("/apiuff/topics/{id}").buildAndExpand(topic.getId()).toUri();
+        URI uri = uriBuilder.path("/topics/{id}").buildAndExpand(topic.getId()).toUri();
         return ResponseEntity.created(uri).body(new TopicUFFDTO(topic));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<TopicDetailDTO> getTopicById(@PathVariable Long id){
-        Optional<TopicUFF> topic = topicUFFRepository.findById(id);
-        return topic.map(topicUFF -> ResponseEntity.ok(new TopicDetailDTO(topicUFF))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
@@ -116,5 +111,13 @@ public class TopicUFFController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping
+    @Transactional
+    @RequestMapping("/deleteAll")
+    public ResponseEntity<?> deleteAllTopics(){
+        topicUFFRepository.deleteAll();
+        return ResponseEntity.ok().build();
     }
 }
