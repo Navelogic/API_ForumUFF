@@ -6,8 +6,11 @@ import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.repository.CourseRepository;
 import br.com.apiuff.repository.TopicUFFRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -33,8 +36,10 @@ public class TopicUFFController {
     }
 
     @PostMapping
-    public void addTopic(@RequestBody TopicForm form){
+    public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody TopicForm form, UriComponentsBuilder uriBuilder) throws java.net.URISyntaxException {
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
+        URI uri = new URI("/apiuff/topics/" + topic.getId());
+        return ResponseEntity.created(uri).body(new TopicUFFDTO(topic));
     }
 }
