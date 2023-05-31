@@ -19,4 +19,6 @@ public interface TopicUFFRepository extends JpaRepository<TopicUFF, Long> {
     List<TopicUFF> findByStatus(StatusTopicUFF status);
 
     List<TopicUFF> findByTitleContaining(String title);
+
+    List<TopicUFF> findByMessageContaining(String message);
 }

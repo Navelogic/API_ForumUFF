@@ -70,6 +70,12 @@ public class TopicUFFController {
         return TopicUFFDTO.convert(topics);
     }
 
+    @GetMapping(params = "message")
+    public List<TopicUFFDTO> findByMessage(@RequestParam("message") String message) {
+        List<TopicUFF> topics = topicUFFRepository.findByMessageContaining(message);
+        return TopicUFFDTO.convert(topics);
+    }
+
 
 
 
