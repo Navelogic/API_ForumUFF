@@ -35,12 +35,17 @@ public class TopicUFFController {
             return TopicUFFDTO.convert(topics);
         }
     }
-
     @PostMapping
     public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) throws java.net.URISyntaxException {
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
         URI uri = new URI("/apiuff/topics/" + topic.getId());
         return ResponseEntity.created(uri).body(new TopicUFFDTO(topic));
+    }
+
+    @GetMapping("/{id}")
+    public TopicUFFDTO getTopicById(@PathVariable Long id) {
+    	TopicUFF topic = topicUFFRepository.findById(id).get();
+    	return new TopicUFFDTO(topic);
     }
 }
