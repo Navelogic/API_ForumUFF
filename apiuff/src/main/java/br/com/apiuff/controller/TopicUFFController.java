@@ -1,5 +1,6 @@
 package br.com.apiuff.controller;
 
+import br.com.apiuff.controller.dto.TopicDetailDTO;
 import br.com.apiuff.controller.dto.TopicUFFDTO;
 import br.com.apiuff.controller.form.TopicForm;
 import br.com.apiuff.entities.TopicUFF;
@@ -44,7 +45,8 @@ public class TopicUFFController {
     }
 
     @GetMapping("/{id}")
-    public TopicUFF getTopicById(@PathVariable Long id){
-        return topicUFFRepository.findById(id);
+    public TopicDetailDTO getTopicById(@PathVariable Long id){
+        TopicUFF topic = topicUFFRepository.getReferenceById(id);
+        return new TopicDetailDTO(topic);
     }
 }
