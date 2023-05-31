@@ -3,9 +3,13 @@ package br.com.apiuff.controller.form;
 import br.com.apiuff.entities.Course;
 import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.repository.CourseRepository;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class TopicForm {
+    @NotNull(message = "Title cannot be null")
     private String title;
+    @NotNull(message = "Message cannot be null")
     private String message;
     private String courseName;
 
