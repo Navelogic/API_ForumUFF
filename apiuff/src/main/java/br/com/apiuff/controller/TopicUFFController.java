@@ -3,12 +3,14 @@ package br.com.apiuff.controller;
 import br.com.apiuff.controller.dto.TopicDetailDTO;
 import br.com.apiuff.controller.dto.TopicUFFDTO;
 import br.com.apiuff.controller.form.TopicForm;
+import br.com.apiuff.controller.form.UpdateTopicUFFForm;
 import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.repository.CourseRepository;
 import br.com.apiuff.repository.TopicUFFRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -37,6 +39,7 @@ public class TopicUFFController {
         }
     }
     @PostMapping
+    @Transactional
     public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) throws java.net.URISyntaxException {
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
@@ -48,5 +51,19 @@ public class TopicUFFController {
     public TopicDetailDTO getTopicById(@PathVariable Long id){
         TopicUFF topic = topicUFFRepository.getReferenceById(id);
         return new TopicDetailDTO(topic);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TopicUFFDTO> updateTopic(@PathVariable Long id, @RequestBody @Valid UpdateTopicUFFForm form){
+        TopicUFF topic = form.updade(id, topicUFFRepository);
+        return ResponseEntity.ok(new TopicUFFDTO(topic));
+
+    }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> deleteTopic(@PathVariable Long id){
+        topicUFFRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
