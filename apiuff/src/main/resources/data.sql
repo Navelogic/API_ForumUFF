@@ -54,21 +54,21 @@ INSERT INTO COURSE(name, category) VALUES('Introduction to Environmental Science
 INSERT INTO COURSE(name, category) VALUES('Film Production Fundamentals', 'Film');
 
 -- TOPICS users
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida', 'Erro ao criar projeto', '2019-05-05 18:00:00', 'NOT_ANSWERED', 1, 1);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre CSS', 'Como centralizar um elemento na página?', '2021-09-15 10:30:00', 'NOT_ANSWERED', 2, 2);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com JavaScript', 'Função não está sendo executada corretamente', '2022-07-20 14:15:00', 'NOT_ANSWERED', 3, 3);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre APIs', 'Como fazer uma requisição HTTP?', '2023-01-10 09:45:00', 'NOT_ANSWERED', 4, 4);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro no Banco de Dados', 'Tabela não está sendo criada corretamente', '2023-02-28 16:20:00', 'NOT_ANSWERED', 5, 5);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre algoritmos', 'Qual a complexidade deste algoritmo?', '2023-03-10 11:10:00', 'NOT_ANSWERED', 6, 6);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com HTML', 'Tags não estão sendo exibidas corretamente', '2023-04-05 13:25:00', 'NOT_ANSWERED', 7, 7);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre SQL', 'Como fazer uma consulta com múltiplas tabelas?', '2023-04-15 16:40:00', 'NOT_ANSWERED', 8, 8);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro no servidor', 'Site está retornando erro 500', '2023-04-25 08:55:00', 'NOT_ANSWERED', 9, 9);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Python', 'Como ler um arquivo CSV?', '2023-05-01 10:10:00', 'NOT_ANSWERED', 10, 10);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com CSS', 'Estilos não estão sendo aplicados corretamente', '2023-05-10 14:30:00', 'NOT_ANSWERED', 11, 11);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Java', 'Como criar uma classe abstrata?', '2023-05-15 11:20:00', 'NOT_ANSWERED', 12, 12);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com APIs', 'Requisições estão retornando erro 404', '2023-05-20 15:40:00', 'NOT_ANSWERED', 13, 13);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Git', 'Como criar uma nova branch?', '2023-05-25 09:50:00', 'NOT_ANSWERED', 14, 14);
-INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro de sintaxe', 'Código não está sendo reconhecido pelo compilador', '2023-05-28 12:15:00', 'NOT_ANSWERED', 15, 15);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida', 'Erro ao criar projeto', '2019-05-05 18:00:00', 'CLOSED', 1, 1);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre CSS', 'Como centralizar um elemento na página?', '2021-09-15 10:30:00', 'CLOSED', 2, 2);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com JavaScript', 'Função não está sendo executada corretamente', '2022-07-20 14:15:00', 'NOT_SOLVED', 3, 3);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre APIs', 'Como fazer uma requisição HTTP?', '2023-01-10 09:45:00', 'NOT_SOLVED', 4, 4);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro no Banco de Dados', 'Tabela não está sendo criada corretamente', '2023-02-28 16:20:00', 'SOLVED', 5, 5);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre algoritmos', 'Qual a complexidade deste algoritmo?', '2023-03-10 11:10:00', 'SOLVED', 6, 6);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com HTML', 'Tags não estão sendo exibidas corretamente', '2023-04-05 13:25:00', 'SOLVED', 7, 7);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre SQL', 'Como fazer uma consulta com múltiplas tabelas?', '2023-04-15 16:40:00', 'SOLVED', 8, 8);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro no servidor', 'Site está retornando erro 500', '2023-04-25 08:55:00', 'CLOSED', 9, 9);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Python', 'Como ler um arquivo CSV?', '2023-05-01 10:10:00', 'CLOSED', 10, 10);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com CSS', 'Estilos não estão sendo aplicados corretamente', '2023-05-10 14:30:00', 'CLOSED', 11, 11);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Java', 'Como criar uma classe abstrata?', '2023-05-15 11:20:00', 'CLOSED', 12, 12);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com APIs', 'Requisições estão retornando erro 404', '2023-05-20 15:40:00', 'CLOSED', 13, 13);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre Git', 'Como criar uma nova branch?', '2023-05-25 09:50:00', 'SOLVED', 14, 14);
+INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Erro de sintaxe', 'Código não está sendo reconhecido pelo compilador', '2023-05-28 12:15:00', 'SOLVED', 15, 15);
 INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre JavaScript', 'Como usar a função map()?', '2023-05-30 15:30:00', 'NOT_ANSWERED', 16, 16);
 INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Problema com Banco de Dados', 'Dados não estão sendo atualizados corretamente', '2023-05-31 10:45:00', 'NOT_ANSWERED', 17, 17);
 INSERT INTO TOPICUFF(TITLE, MESSAGE, CREATED_AT, STATUS, author_id, COURSE_ID) VALUES('Dúvida sobre HTML', 'Como criar um formulário?', '2023-06-05 14:00:00', 'NOT_ANSWERED', 18, 18);

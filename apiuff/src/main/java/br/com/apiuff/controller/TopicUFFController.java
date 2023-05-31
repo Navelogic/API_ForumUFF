@@ -5,6 +5,7 @@ import br.com.apiuff.controller.dto.TopicUFFDTO;
 import br.com.apiuff.controller.form.TopicForm;
 import br.com.apiuff.controller.form.UpdateTopicUFFForm;
 import br.com.apiuff.entities.TopicUFF;
+import br.com.apiuff.enums.StatusTopicUFF;
 import br.com.apiuff.repository.CourseRepository;
 import br.com.apiuff.repository.TopicUFFRepository;
 import jakarta.validation.Valid;
@@ -30,15 +31,48 @@ public class TopicUFFController {
     private CourseRepository courseRepository;
 
     @GetMapping
-    public List<TopicUFFDTO> listTopics(String couseName){
-        if(couseName == null){
-            List<TopicUFF> topics = topicUFFRepository.findAll();
+    public List<TopicUFFDTO> findAll(){
+        List<TopicUFF> topics = topicUFFRepository.findAll();
+        return TopicUFFDTO.convert(topics);
+    }
+
+    @GetMapping(params = "courseName")
+    public List<TopicUFFDTO> findByCourseName(@RequestParam("courseName") String courseName) {
+        List<TopicUFF> topics = topicUFFRepository.findByCourseName(courseName);
+        return TopicUFFDTO.convert(topics);
+    }
+
+    @GetMapping(params = "authorName")
+    public List<TopicUFFDTO> findByAuthorName(@RequestParam("authorName") String authorName) {
+        List<TopicUFF> topics = topicUFFRepository.findByAuthorName(authorName);
+        return TopicUFFDTO.convert(topics);
+    }
+
+    @GetMapping(params = "authorEmail")
+    public List<TopicUFFDTO> findByAuthorEmail(@RequestParam("authorEmail") String authorEmail) {
+        List<TopicUFF> topics = topicUFFRepository.findByAuthorEmail(authorEmail);
+        return TopicUFFDTO.convert(topics);
+    }
+
+    @GetMapping(params = "status")
+    public List<TopicUFFDTO> findByStatus(@RequestParam String status) {
+        try {
+            StatusTopicUFF statusEnum = StatusTopicUFF.valueOf(status);
+            List<TopicUFF> topics = topicUFFRepository.findByStatus(statusEnum);
             return TopicUFFDTO.convert(topics);
-        } else {
-            List<TopicUFF> topics = topicUFFRepository.findByCourseName(couseName);
-            return TopicUFFDTO.convert(topics);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid status: " + status);
         }
     }
+    @GetMapping(params = "title")
+    public List<TopicUFFDTO> findByTitle(@RequestParam("title") String title) {
+        List<TopicUFF> topics = topicUFFRepository.findByTitleContaining(title);
+        return TopicUFFDTO.convert(topics);
+    }
+
+
+
+
 
     @PostMapping
     @Transactional
