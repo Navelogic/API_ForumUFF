@@ -55,9 +55,10 @@ public class TopicUFFController {
     }
 
     @GetMapping(params = "authorEmail")
-    public List<TopicUFFDTO> findByAuthorEmail(@RequestParam("authorEmail") String authorEmail) {
-        List<TopicUFF> topics = topicUFFRepository.findByAuthorEmail(authorEmail);
-        return TopicUFFDTO.convert(topics);
+    public Page<TopicUFFDTO> findByAuthorEmail(@RequestParam("authorEmail") String authorEmail, @RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TopicUFF> topicPage = topicUFFRepository.findByAuthorEmail(authorEmail, pageable);
+        return topicPage.map(TopicUFFDTO::new);
     }
 
     @GetMapping(params = "status")

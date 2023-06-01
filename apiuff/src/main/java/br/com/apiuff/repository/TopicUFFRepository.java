@@ -14,8 +14,8 @@ import java.util.List;
 public interface TopicUFFRepository extends JpaRepository<TopicUFF, Long> {
     Page<TopicUFF> findByCourseName(String couseName, Pageable pageable);
     Page<TopicUFF> findByAuthorName(String authorName, Pageable pageable);
+    Page<TopicUFF> findByAuthorEmail(String authorEmail, Pageable pageable);
 
-    List<TopicUFF> findByAuthorEmail(String authorEmail);
 
     List<TopicUFF> findByStatus(StatusTopicUFF status);
 
