@@ -40,12 +40,13 @@ public class TopicUFFController {
         Page<TopicUFF> topicPage = topicUFFRepository.findAll(pageable);
         return topicPage.map(TopicUFFDTO::new);
     }
-
     @GetMapping(params = "courseName")
-    public List<TopicUFFDTO> findByCourseName(@RequestParam("courseName") String courseName) {
-        List<TopicUFF> topics = topicUFFRepository.findByCourseName(courseName);
-        return TopicUFFDTO.convert(topics);
+    public Page<TopicUFFDTO> findByCourseName(@RequestParam("courseName") String courseName, @RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TopicUFF> topicPage = topicUFFRepository.findByCourseName(courseName, pageable);
+         return topicPage.map(TopicUFFDTO::new);
     }
+
 
     @GetMapping(params = "authorName")
     public List<TopicUFFDTO> findByAuthorName(@RequestParam("authorName") String authorName) {

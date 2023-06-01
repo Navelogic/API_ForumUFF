@@ -4,6 +4,7 @@ import br.com.apiuff.entities.Course;
 import br.com.apiuff.entities.TopicUFF;
 import br.com.apiuff.entities.User;
 import br.com.apiuff.enums.StatusTopicUFF;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,10 +43,8 @@ public class TopicUFFDTO {
     }
 
     // Methods
-    public static List<TopicUFFDTO> convert(List<TopicUFF> topic) {
-        return topic.stream()
-                .map(TopicUFFDTO::new)
-                .collect(Collectors.toList());
+    public static Page<TopicUFFDTO> convert(Page<TopicUFF> topic) {
+        return topic.map(TopicUFFDTO::new);
     }
 
 }
