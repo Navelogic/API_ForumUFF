@@ -13,8 +13,7 @@ import java.util.List;
 @Repository
 public interface TopicUFFRepository extends JpaRepository<TopicUFF, Long> {
     Page<TopicUFF> findByCourseName(String couseName, Pageable pageable);
-
-    List<TopicUFF> findByAuthorName(String authorName);
+    Page<TopicUFF> findByAuthorName(String authorName, Pageable pageable);
 
     List<TopicUFF> findByAuthorEmail(String authorEmail);
 
