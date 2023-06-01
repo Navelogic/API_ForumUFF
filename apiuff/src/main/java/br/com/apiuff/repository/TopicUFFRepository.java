@@ -15,11 +15,7 @@ public interface TopicUFFRepository extends JpaRepository<TopicUFF, Long> {
     Page<TopicUFF> findByCourseName(String couseName, Pageable pageable);
     Page<TopicUFF> findByAuthorName(String authorName, Pageable pageable);
     Page<TopicUFF> findByAuthorEmail(String authorEmail, Pageable pageable);
-
-
-    List<TopicUFF> findByStatus(StatusTopicUFF status);
-
-    List<TopicUFF> findByTitleContaining(String title);
-
-    List<TopicUFF> findByMessageContaining(String message);
+    Page<TopicUFF> findByStatus(StatusTopicUFF status, Pageable pageable);
+    Page<TopicUFF> findByTitleContaining(String title, Pageable pageable);
+    Page<TopicUFF> findByMessageContaining(String message, Pageable pageable);
 }

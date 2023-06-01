@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 
 @RestController
@@ -62,25 +60,28 @@ public class TopicUFFController {
     }
 
     @GetMapping(params = "status")
-    public List<TopicUFFDTO> findByStatus(@RequestParam String status) {
+    public Page<TopicUFFDTO> findByStatus(@RequestParam String status, @RequestParam int page, @RequestParam int size) {
         try {
             StatusTopicUFF statusEnum = StatusTopicUFF.valueOf(status);
-            List<TopicUFF> topics = topicUFFRepository.findByStatus(statusEnum);
-            return TopicUFFDTO.convert(topics);
+            Pageable pageable = PageRequest.of(page, size);
+            Page<TopicUFF> topicPage = topicUFFRepository.findByStatus(statusEnum, pageable);
+            return topicPage.map(TopicUFFDTO::new);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid status: " + status);
         }
     }
     @GetMapping(params = "title")
-    public List<TopicUFFDTO> findByTitle(@RequestParam("title") String title) {
-        List<TopicUFF> topics = topicUFFRepository.findByTitleContaining(title);
-        return TopicUFFDTO.convert(topics);
+    public Page<TopicUFFDTO> findByTitle(@RequestParam("title") String title, @RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TopicUFF> topicPage = topicUFFRepository.findByTitleContaining(title, pageable);
+        return topicPage.map(TopicUFFDTO::new);
     }
 
     @GetMapping(params = "message")
-    public List<TopicUFFDTO> findByMessage(@RequestParam("message") String message) {
-        List<TopicUFF> topics = topicUFFRepository.findByMessageContaining(message);
-        return TopicUFFDTO.convert(topics);
+    public Page<TopicUFFDTO> findByMessage(@RequestParam("message") String message, @RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TopicUFF> topicPage = topicUFFRepository.findByMessageContaining(message, pageable);
+        return topicPage.map(TopicUFFDTO::new);
     }
 
     @GetMapping("/{id}")
