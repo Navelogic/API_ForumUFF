@@ -10,6 +10,9 @@ import br.com.apiuff.repository.CourseRepository;
 import br.com.apiuff.repository.TopicUFFRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 
 @RestController
@@ -31,9 +35,10 @@ public class TopicUFFController {
     private CourseRepository courseRepository;
 
     @GetMapping
-    public List<TopicUFFDTO> findAll(){
-        List<TopicUFF> topics = topicUFFRepository.findAll();
-        return TopicUFFDTO.convert(topics);
+    public Page<TopicUFFDTO> findAll(@RequestParam int page, @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TopicUFF> topicPage = topicUFFRepository.findAll(pageable);
+        return topicPage.map(TopicUFFDTO::new);
     }
 
     @GetMapping(params = "courseName")

@@ -47,4 +47,5 @@ public class TopicUFFDTO {
                 .map(TopicUFFDTO::new)
                 .collect(Collectors.toList());
     }
+
 }
