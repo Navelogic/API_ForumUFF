@@ -1,10 +1,10 @@
 -- USER
-INSERT INTO USERS(name, email, password) VALUES('Aluno', 'aluno@email.com', '123456');
-INSERT INTO USERS(name, email, password) VALUES('João', 'joao@email.com', 'qwerty');
-INSERT INTO USERS(name, email, password) VALUES('Maria', 'maria@email.com', 'abcdef');
-INSERT INTO USERS(name, email, password) VALUES('Pedro', 'pedro@email.com', '654321');
-INSERT INTO USERS(name, email, password) VALUES('Ana', 'ana@email.com', 'password123');
-INSERT INTO USERS(name, email, password) VALUES('Lucas', 'lucas@email.com', 'pass1234');
+INSERT INTO USERS(name, email, password) VALUES('Aluno', 'aluno@email.com', '$2a$12$qTFVr.Jp4btKw02KnG4WsuLPPxUEA0pw8E6WXmdFoVtIdPLdn32Fm');
+INSERT INTO USERS(name, email, password) VALUES('João', 'joao@email.com', '$2a$12$GEFX6abaIr7wyhnZ1nHjNO/0jM3nA8qBzwhaCCPXTk8/Gv4f8ZntC');
+INSERT INTO USERS(name, email, password) VALUES('Maria', 'maria@email.com', '$2a$12$7zjq3sdJUKcvBHmV877FGuaCF1gSE/qyPx.4jp2oKOkpUiifQYS0W');
+INSERT INTO USERS(name, email, password) VALUES('Pedro', 'pedro@email.com', '$2a$12$meX1IkpkmRiij5dNHGdrte4mji.GOs/IrdXLcH6uKZpA7Gvm56tbK');
+INSERT INTO USERS(name, email, password) VALUES('Ana', 'ana@email.com', '$2a$12$FSusTgnko1/Z2f0qCEW3muyDPaUAukmTVVQreiH.jFeAvXW5MMaFK');
+INSERT INTO USERS(name, email, password) VALUES('Lucas', 'lucas@email.com', '$2a$12$NEURrkW57NxfeuAHnt7Q9e7YG86BRAIIH5.xFw1Tid22bacIicw.i');
 INSERT INTO USERS(name, email, password) VALUES('Juliana', 'juliana@email.com', '987654');
 INSERT INTO USERS(name, email, password) VALUES('Gabriel', 'gabriel@email.com', 'p@ssw0rd');
 INSERT INTO USERS(name, email, password) VALUES('Camila', 'camila@email.com', 'abcdefg');
