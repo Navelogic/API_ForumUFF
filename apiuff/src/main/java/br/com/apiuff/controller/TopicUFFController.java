@@ -10,6 +10,8 @@ import br.com.apiuff.repository.CourseRepository;
 import br.com.apiuff.repository.TopicUFFRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +37,7 @@ public class TopicUFFController {
 
     // GETS
     @GetMapping
+    @Cacheable(value = "topicList")
     public Page<TopicUFFDTO> findAll(@RequestParam int page, @RequestParam int size, @RequestParam(required = false) String sort) {
         Pageable pageable;
 
@@ -169,6 +172,7 @@ public class TopicUFFController {
     // POST
     @PostMapping
     @Transactional
+    @CacheEvict(value = "topicList", allEntries = true)
     public ResponseEntity<TopicUFFDTO> addTopic(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder){
         TopicUFF topic = form.convert(courseRepository);
         topicUFFRepository.save(topic);
